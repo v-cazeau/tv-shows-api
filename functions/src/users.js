@@ -5,6 +5,7 @@ const collection = db.collection('users')
 
 export async function signup(req,res) {
     const { email, password } = req.body
+    
     if(!email || password.length < 6 ) { //if pw or em is blank
         res.status(400).send({ message:"Email and Password are both required." })
         return
