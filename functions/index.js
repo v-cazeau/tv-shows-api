@@ -14,7 +14,7 @@ app.post("/login", login)
 
 //Show Routes:
 app.get("/shows", getShows)
-app.post("/shows", addShow)
+app.post("/shows", addShow) //WE WANT TO PROTECT
 app.delete("/shows/:showId", deleteShow)
 
 //lets us run locally without emulators: 

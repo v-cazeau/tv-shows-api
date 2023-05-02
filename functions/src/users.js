@@ -1,5 +1,7 @@
 import { FieldValue } from 'firebase-admin/firestore'
+import jwt from 'jsonwebtoken'
 import { db } from './dbConnect.js'
+import { secretKey } from '../secrets.js'
 
 const collection = db.collection('users')
 
@@ -38,5 +40,6 @@ export async function login(req,res) {
         res.status(400).send({ message: "Invalid email and/or password." })
     }
     delete user.password
-    res.send(user) // { email, createdAt, id }
+    const token = jwt.sign(user, secretKey)
+    res.send({ user, token }) // { email, createdAt, id }
 }
